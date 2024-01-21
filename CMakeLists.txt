@@ -1,11 +1,9 @@
 cmake_minimum_required(VERSION 3.15)
 
-project(boiletplate LANGUAGES CXX)
+project(boiletplate)
 
 set(CMAKE_CXX_STANDARD 17)
 
-find_package(gtest REQUIRED)
+set( SOURCES src/main.cpp )
 
-add_executable(main main.cpp)
-
-target_link_libraries(main PRIVATE fmt::fmt)
+add_executable(${CMAKE_PROJECT_NAME} ${SOURCES})
