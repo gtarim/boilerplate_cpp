@@ -5,8 +5,8 @@ pipeline {
             steps {
                 echo "Building started.."
                 sh '''
-                echo "doing build stuff.."
-                echo "hello world" > hello.txt
+                cmake -B build -S . -DCMAKE_BUILD_TYPE=Release
+                cmake --build build --config Release
                 '''
             }
         }
@@ -14,9 +14,7 @@ pipeline {
             steps {
                 echo "Testing started.."
                 sh '''
-                echo "doing test stuff.."
-                
-                cat hello.txt
+                ./boilerplate
                 '''
             }
         }
