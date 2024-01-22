@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo "Building.."
+                echo "Building started.."
                 sh '''
                 echo "doing build stuff.."
                 echo "hello world" > hello.txt
@@ -12,7 +12,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                echo "Testing.."
+                echo "Testing started.."
                 sh '''
                 echo "doing test stuff.."
                 
@@ -20,9 +20,9 @@ pipeline {
                 '''
             }
         }
-        stage('Deliver') {
+        stage('Deploy') {
             steps {
-                echo 'Deliver....'
+                echo 'Deploy started....'
                 sh '''
                 echo "doing delivery stuff.."
                 '''
