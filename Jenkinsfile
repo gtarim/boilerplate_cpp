@@ -1,6 +1,8 @@
 pipeline {
     agent {
-        docker { image 'node:20.11.0-alpine3.19' }
+        dockerfile {
+            filename 'Dockerfile'
+        }
     }
     stages {
         stage('Test') {
