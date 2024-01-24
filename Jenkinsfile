@@ -9,7 +9,7 @@ pipeline {
             steps {
                 echo "Building started.."
                 sh '''
-                docker --version
+                python3 --version
                 '''
             }
         }
