@@ -9,7 +9,7 @@ pipeline {
             steps {
                 echo "Building started.."
                 sh '''
-                node --version
+                docker --version
                 '''
             }
         }
