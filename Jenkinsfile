@@ -1,31 +1,55 @@
 pipeline {
     agent { 
-        docker { image 'gcc:9.5.0'}
+        docker { 
+            image 'alpine:latest'
+        }
     }
     stages {
-        stage('Build') {
+        stage('checkout-git') {
             steps {
-                echo "Building started.."
+                echo "git checkout started.."
+                git branch: 'master',
+                    url: 'https://github.com/gtarim/boilerplate_cpp.git'
+                }
+        }
+        stage('build-environment') {
+            steps {
+                echo "building environment started.."
                 sh '''
-                echo "doing delivery stuff.."
+                apk update
+                apk --no-cache add cmake make gcc g++ libc-dev
                 '''
             }
         }
-        stage('Test') {
+        stage('build') {
             steps {
-                echo "Testing started.."
+                echo "building started.."
                 sh '''
-                echo "doing delivery stuff.."
+                rm -rf build
+                mkdir build
+                cmake -B build -S .
+                cmake --build build
                 '''
             }
         }
-        stage('Deploy') {
+        stage('deploy') {
             steps {
-                echo 'Deploy started....'
+                echo 'deployment started....'
                 sh '''
-                echo "doing delivery stuff.."
+                ./boilerplate
                 '''
             }
+        }
+        // stage('clean-up') {
+        //     steps {
+        //         echo 'clean-up started....'
+        //         cleanWs()
+        //     }
+        // }
+    }
+    post {
+        always {
+            cleanWs()
         }
     }
 }
