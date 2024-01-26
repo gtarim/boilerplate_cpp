@@ -1,12 +1,8 @@
-FROM gcc:9.5 AS build
+FROM alpine:latest
 
 ENV DEBIAN_FRONTEND noninteractive
 
 LABEL Description="Build environment"
-
-RUN apt-get update && apt-get -y --no-install-recommends install \
-    build-essential \
-    cmake
 
 COPY . /workspace/boilerplate
 
