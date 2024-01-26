@@ -1,11 +1,30 @@
 pipeline {
-    agent {
-        docker { image 'node:20.11.0-alpine3.19' }
+    agent { 
+        docker { image 'gcc:9.5.0'}
     }
     stages {
+        stage('Build') {
+            steps {
+                echo "Building started.."
+                sh '''
+                gcc --version
+                '''
+            }
+        }
         stage('Test') {
             steps {
-                sh 'node --version'
+                echo "Testing started.."
+                sh '''
+                echo "doing delivery stuff.."
+                '''
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploy started....'
+                sh '''
+                echo "doing delivery stuff.."
+                '''
             }
         }
     }
