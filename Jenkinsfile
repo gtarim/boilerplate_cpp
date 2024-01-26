@@ -7,7 +7,7 @@ pipeline {
             steps {
                 echo "Building started.."
                 sh '''
-                gcc --version
+                echo "doing delivery stuff.."
                 '''
             }
         }
